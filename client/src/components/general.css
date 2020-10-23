@@ -1,0 +1,41 @@
+.Full {
+    height: 100vh;
+    width: 100vm;
+    background-color: black;
+    color: #33FF00;
+    text-align: center;
+    padding: 20vh;
+    font-family: monospace;
+
+}
+
+.Console {
+    height: 434px;
+    width: 722px;
+    border-style: solid;
+    border-color: #33FF00;
+    margin: auto;
+}
+
+input[type=text] {
+    border-style: solid;
+    border-color: #33FF00;
+    background-color: transparent;
+    font-family: monospace;
+    color: #33FF00;
+
+}
+
+button {
+    border-style: none;
+    background-color: transparent;
+    color: #33FF00;
+    font-family: monospace;
+}
+
+a {
+    border-style: solid;
+    border-color: #33FF00;
+    color: #33FF00;
+    padding: 2px;
+}
