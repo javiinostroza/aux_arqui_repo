@@ -1,0 +1,33 @@
+<div class="mb-3">
+  <% if @rooms.present? %>
+    Select a room or
+    <%= link_to new_room_path do %>
+      create a room
+    <% end %>
+  <% else %> 
+    <%= link_to new_room_path do %>
+      Create a room
+    <% end %>
+  <% end %>
+</div>
+
+<hr/>
+<% if @rooms.present? %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Created at</th>
+      </tr>
+        <% @rooms.each do |room| %>
+      <tr>
+        <td><%= link_to room.name, room_path(room), class: 'nav-link room-nav-link' %></td>
+        <td><%=room.created_at%></td>
+      </tr>
+          
+        <% end %>
+    </table>
+<% else %>
+  <div class="text-muted">
+    There are no rooms
+  </div>
+<% end %>

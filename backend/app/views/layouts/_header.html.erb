@@ -1,0 +1,8 @@
+CHATROOM
+<hr/>
+<% if logged_in? %>
+You are Logged In, <%= current_user.username %>
+<%= link_to "Log out", logout_path, method: :delete %>
+<hr/>
+<% else %>
+<%end%>

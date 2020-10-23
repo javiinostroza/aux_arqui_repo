@@ -1,0 +1,12 @@
+<h1>Welcome</h1>
+  <% if logged_in? %>
+    <h1>You are Logged In, <%= current_user.username %></h1>
+    
+    <%= link_to 'GO TO ROOMS LIST', rooms_path  %>
+  <% else %>
+    <%= button_to "Login with previous registered name", '/login', method: :get%>
+    <br>
+    <%= button_to 'Log in as anon', users_path( user: {username: "ca", pass: "password"}, anon: true, method: :post)  %>
+    <br>
+    <%= button_to "Sign Up with a new username", '/users/new', method: :get%>
+  <%end%>

@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "61a3d6d1-40d8-493a-8b0e-4f5d5b96ad89",
+		"name": "Rooms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/rooms/?name=roomsitafinal",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"rooms",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "roomsitafinal"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "See rooms list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/rooms",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get one room data (Title + messages)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/rooms/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"rooms",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send message to room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user_id",
+							"value": "7",
+							"type": "text"
+						},
+						{
+							"key": "room_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "message",
+							"value": "hola, soy el mauritox finald",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/sendmessage",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"sendmessage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Room Messages Pdf",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/getroommessagesonpdf?room_id=1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"getroommessagesonpdf"
+					],
+					"query": [
+						{
+							"key": "room_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

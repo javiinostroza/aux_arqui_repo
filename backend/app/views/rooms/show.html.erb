@@ -1,0 +1,44 @@
+
+<%= link_to 'BACK TO ROOMS LISTS', rooms_path  %>
+
+<h2>
+  ROOM NAME: <%= @room.name %>
+</h2>
+<h3>
+  Reload to get new incoming messages!
+</h3>
+<hr/>
+
+    <div class="chat" style="width:600px; height:300px; overflow: scroll;">
+      <% @room_messages.each do |room_message| %>
+        <div class="chat-message-container">
+          <div class="row no-gutters">
+
+            <div class="col">
+                <div class="text-right">
+                  <small>
+                  <%= room_message.user.username %> says at
+                    <%= room_message.created_at %>
+                  </small>:
+                </div>
+              <div class="message-content">
+                <p class="mb-1">
+                  <% if @room[:reversed] %>
+                    <%= room_message.message.reverse %>
+                  <% else %>
+                    <%= room_message.message %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  <%= form_for @room_message do |f|%>
+  <%= f.label "New message"%><br>
+  <%= f.text_field :message%><br>
+  <%= f.hidden_field :room_id %>
+  <%= f.submit "Send" %>
+<%end%>

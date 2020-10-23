@@ -1,0 +1,8 @@
+<h1>Login</h1>
+<%= form_tag '/login' do %>
+  <%= label_tag :username%>
+  <%= text_field_tag :username %>
+  <%= submit_tag "Login"%>
+<%end%>
+<%= button_to 'Log in as anon', users_path( user: {username: "ca", pass: "password"}, anon: true, method: :post)  %>
+<%= button_to "Sign Up with a new username", '/users/new', method: :get%>
