@@ -2,3 +2,40 @@
     text-align: left;
     height: 100%;
 }
+
+#main {
+    min-height: 800px;
+    margin: 0px;
+    padding: 10px;
+    display: -webkit-flex;
+    display:         flex;
+    -webkit-flex-flow: row;
+            flex-flow: row;
+    }
+    
+    #main > article {
+    margin: 4px;
+    padding: 5px;
+    border-radius: 7pt;
+    -webkit-flex: 3 1 60%;
+            flex: 3 1 60%;
+    -webkit-order: 2;
+            order: 2;
+    }
+    
+    #main > nav {
+    margin: 4px;
+    padding: 25px;
+    padding-top: 30px;
+    border-radius: 7pt;
+    -webkit-flex: 1 6 20%;
+            flex: 1 6 20%;
+    -webkit-order: 1;
+            order: 1;
+    }
+
+#room-list {
+    width: 216px;
+    height: 240px;
+    overflow: scroll;
+    } 
