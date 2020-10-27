@@ -56,24 +56,39 @@ const HomeLogged = () => {
             .catch(error => console.log('error', error));
         window.location.reload();
     }
+
+    const handleLogOutClick = () => {
+        window.localStorage.removeItem('chat token');
+        window.location.reload();
+        history.push('/');
+    }
  
     return (
         <div class="Full">
-            <form class="mini-form" onSubmit={handleSubmitNewRoom}>
-                <div>
-                    <input type="text" onChange={(event) => setNewRoomName(event.target.value)} placeholder="room name"/>
+            <div class="Console">
+            <div className={'Bar'}>
+                <div className={'Left'}>
+                    <h3>Status: Online</h3>
                 </div>
+                <div className={'Right'}>
+                    <h3> <button type="submit" onClick={handleLogOutClick}> Log Out</button></h3>
+                </div>
+            </div>
                 <br></br>
-                <div><input type="submit" value="Create Room"></input></div>
-                
-            </form>
-            <br></br><br></br>
-            <br></br><br></br>
-            <br></br>
-            <h3>Rooms</h3>
-            <br></br> 
-            <div id="rooms-list">
-                <Rooms rooms={rooms} handleEnterChat={handleEnterChat} />                
+                <form class="mini-form" onSubmit={handleSubmitNewRoom}>
+                    <div>
+                        <input type="text" onChange={(event) => setNewRoomName(event.target.value)} placeholder="room name"/>
+                    </div>
+                    <br></br>
+                    <div><input type="submit" value="Create Room"></input></div>
+                    
+                </form>
+                <br></br><br></br>
+                <h3>Rooms</h3>
+                <br></br> 
+                <div id="rooms-list">
+                    <Rooms rooms={rooms} handleEnterChat={handleEnterChat} />                
+                </div>
             </div>
         </div>
     )
