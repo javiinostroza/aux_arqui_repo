@@ -4,12 +4,12 @@ import './Message.css';
 
 import ReactEmoji from 'react-emoji';
 
-const Message = ({ message: { user, text, time}, name }) => {
+const Message = ({ message, name }) => {
     let isSentByCurrentUser = false;
-
+    
     const trimmedName = name.trim().toLowerCase();
 
-    if(user === trimmedName) {
+    if(message.username === trimmedName) {
         isSentByCurrentUser = true;
     }
 
@@ -18,13 +18,13 @@ const Message = ({ message: { user, text, time}, name }) => {
             ? (
                 // if isSentByCurrentUser is false
                 <div>
-                    <p><b>[{time}] {trimmedName}: {ReactEmoji.emojify(text)}</b></p>
+                    <p><b>[{message.created_at}] {trimmedName}: {ReactEmoji.emojify(message.message)}</b></p>
                 </div>
             )
             : (
                 // if it's true
                 <div>
-                    <p>[{time}] {user}: {ReactEmoji.emojify(text)}</p>
+                    <p>[{message.created_at}] {message.username}: {ReactEmoji.emojify(message.message)}</p>
                 </div>
             )
     )

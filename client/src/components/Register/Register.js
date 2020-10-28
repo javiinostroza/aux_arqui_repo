@@ -20,9 +20,6 @@ const Register = () => {
         fetch(url_, requestOptions)
             .then( (response) => {
                 return response.json()
-                .then((data) => {
-                    console.log("register: ", data)
-                })
                 
             })
             .catch((err) => {

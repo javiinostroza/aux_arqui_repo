@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-import ScrollToBottom from 'react-scroll-to-bottom';
-import { url_rooms } from "./../Routes"
-import { useHistory } from 'react-router-dom';
-
+import React from 'react';
 
 
 const Rooms = ({rooms, handleEnterChat}) => (

@@ -8,7 +8,6 @@ const LogIn = () => {
     const history = useHistory();
     const [name, setName] = useState('');
     const [userId, setUserId] = useState('');
-    const [room, setRoom] = useState('');
 
     const handleLoginClick = (event) => {
         var myHeaders = new Headers();
@@ -30,17 +29,13 @@ const LogIn = () => {
                 return response.json()
                 
                 .then((data) => {
-                    console.log("log in ",  data);
                     if(data.username === undefined){
                         alert("User not found")
                     }else{
                         setName(data.username);
                         setUserId(data.id);
-                        console.log("before push");
-                        
                         window.localStorage.setItem('chat token', token);
                         history.push('/');
-                        console.log("after push");
                         }
                     return data;
                     })
@@ -49,6 +44,8 @@ const LogIn = () => {
                     console.log(err);
             });      
     }
+
+    window.localStorage.setItem('userId', userId);
 
     return (
         <div className={'Full'}>

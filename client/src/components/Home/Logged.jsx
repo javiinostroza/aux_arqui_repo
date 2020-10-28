@@ -30,13 +30,11 @@ const HomeLogged = () => {
     }, []);
 
     const handleEnterChat = (event) => {
-        console.log("E: ", event);
         event.preventDefault();
         const data = event.target.value;
         var sepData = data.split(".")
         const chatId = sepData[0]
         const chatName = sepData[1]
-        console.log("chat name: ", chatName);
         history.push(`/chat?name=${chatName}&room=${chatId}`);
         window.location.reload();
     }
@@ -52,7 +50,6 @@ const HomeLogged = () => {
         const url_ = url_add_room + newRoomName
         fetch(url_, requestOptionsAddRoom)
             .then(response => response.text())
-            .then(result => console.log(result))
             .catch(error => console.log('error', error));
         window.location.reload();
     }
