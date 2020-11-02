@@ -2,8 +2,6 @@ lenguage: bash
 
 sudo: required
 
-services:
--docker
+services: docker
 
-script:
--echo "hello world2"
+script: echo "hello world2"
