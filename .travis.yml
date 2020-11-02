@@ -1,7 +1,8 @@
-lenguage: bash
+language: bash
 
 sudo: required
 
 services: docker
 
-script: echo "hello world2"
+script:
+    -echo "hello world2"
