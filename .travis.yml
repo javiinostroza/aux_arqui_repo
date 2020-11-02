@@ -3,7 +3,7 @@ lenguage: bash
 sudo: required
 
 services:
-    -docker
+-docker
 
 script:
-    -echo "hello world"
+-echo "hello world"
