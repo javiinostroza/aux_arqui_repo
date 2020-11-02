@@ -4,5 +4,14 @@ sudo: required
 
 services: docker
 
-script:
-    -echo "hello world2"
+script: 
+    - cd backend
+    - docker-compose -f local-docker-compose.yml build
+    - docker-compose -f local-docker-compose.yml up -d
+    - echo "no tests"
+    - bash start.sh
+    - bash stop.sh
+    - bash install.sh
+    - zip -r latest *
+    - mkdir -p dpl_cd_upload
+    - mv latest.zip dpl_cd_upload/latest.zip
