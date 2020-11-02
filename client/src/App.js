@@ -1,14 +1,21 @@
 import React from "react";
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Join from './components/Join/Join';
+
+import Home from './components/Home';
 import Chat from './components/Chat/Chat';
+import Register from './components/Register/Register'
+import LogIn from './components/LogIn/LogIn'
 
 const App = () => (
     <Router>
-        <Route path="/" exact component={Join}/>
-        <Route path="/chat" exact component={Chat}/>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/register" component={Register}/>
+        <Route exact path="/login" component={LogIn} />
+        <PrivateRoute exact path="/chat" component={Chat}/>
     </Router>
 )
 

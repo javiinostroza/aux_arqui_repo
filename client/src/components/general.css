@@ -26,12 +26,14 @@ input[type=text] {
 
 }
 
-button {
-    border-style: none;
+button, input {
+    border-style: solid;
     background-color: transparent;
     color: #33FF00;
     font-family: monospace;
 }
+
+
 
 a {
     border-style: solid;
@@ -39,3 +41,25 @@ a {
     color: #33FF00;
     padding: 2px;
 }
+
+#main {
+    min-height: 800px;
+    margin: 0px;
+    padding: 10px;
+    display: -webkit-flex;
+    display:         flex;
+    -webkit-flex-flow: row;
+            flex-flow: row;
+}
+    
+
+
+#room-list {
+    width: 216px;
+    height: 240px;
+    background-color: black;
+    color: #33FF00;
+    font-family: monospace;
+    border-color: #33FF00;
+    
+} 

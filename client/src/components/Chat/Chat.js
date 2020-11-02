@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
+import {url_display_chat} from "./../Routes";
 import io from 'socket.io-client';
+
+// IMPORTAR ROUTES PARA MENSAJES Y CHAT. Y TERMINAR ESTO
+
 
 import './Chat.css'
 import '../general.css'
@@ -18,7 +22,7 @@ const Chat = ({ location }) => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
     const ENDPOINT = 'ec2-18-219-25-136.us-east-2.compute.amazonaws.com:5000'
-
+    
 
     useEffect(() => {
         const {room, name} = queryString.parse(location.search);
@@ -27,12 +31,39 @@ const Chat = ({ location }) => {
 
         setName(name);
         setRoom(room);
+        console.log("name: ", name);
+        console.log("room: ", room);
+
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+          };
+        const url_ = url_display_chat + room;
+        fetch(url_, requestOptions)
+            .then((response) => {
+                return response.json().then((data) => {
+                    const list = data.messages
+                    list.sort((a,b) => {
+                        if(a.created_at > b.created_at){
+                            return 1
+                        }else{
+                            return -1
+                        }
+                    })
+                    console.log("estos son los mensajes: ", data)
+                    return data;
+                }).catch((err) => {
+                    console.log(err);
+                })
+            })
+
+
 
         socket.emit('join', {name, room}, () =>{
 
         });
         socket.on('messages', (messages) => {
-            console.log(messages);
+            console.log("mensajes de ellos: ", messages);
             setMessages(messages);
         })
 
@@ -49,6 +80,7 @@ const Chat = ({ location }) => {
 
     }, [ENDPOINT, location.search]);
 
+    
 
     const sendMessage = (event) => {
         event.preventDefault();
