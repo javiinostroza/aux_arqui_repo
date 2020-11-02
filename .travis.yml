@@ -1,6 +1,4 @@
 lenguage: bash
-ruby:
-    -"2.5"
 
 sudo: required
 
