@@ -8,4 +8,5 @@ services:
     -docker
 
 script: 
+    -cd backend/ 
     -echo "hello world"
