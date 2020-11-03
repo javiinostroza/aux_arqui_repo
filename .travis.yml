@@ -16,7 +16,7 @@ script:
     - mkdir -p dpl_cd_upload
     - mv latest.zip dpl_cd_upload/latest.zip
 
-    after_success:
+    #after_success:
     #    - docker --version
     #    - pip install --user awscli #instala el cliente de aws
     #    - export PATH=$PATH:$HOME/.local/bin # pone aws en el path 
