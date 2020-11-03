@@ -15,3 +15,28 @@ script:
     - zip -r latest *
     - mkdir -p dpl_cd_upload
     - mv latest.zip dpl_cd_upload/latest.zip
+
+    after_success:
+    #    - docker --version
+    #    - pip install --user awscli #instala el cliente de aws
+    #    - export PATH=$PATH:$HOME/.local/bin # pone aws en el path 
+    #    - eval $(aws ecr get-login --region sa-east-1 --no-include-email) #necesita AWS_ACCESS_KEY_ID y AWS_SECRET_ACCESS_KEY envars
+    #    - docker build -t $AWS_ECR_API:latest pai
+    #    - docker tag $AWS_ECR_API:latest
+    #    - docker push $AWS_ECR_API:latest
+    #    - docker images
+
+    #deploy:
+#    -provider: s3
+#     access_key_id: $AWS_ACCESS_KEY_ID
+#     secret_access_key: $AWS_SECRET_ACCESS_KEY
+#     local_dir: dpl_cd_upload
+#     skip_cleanup: true 
+#     bucket: ""
+#     region: sa-east-1 
+#     upload-dir: latest
+#     provider: codedeploy
+#     access_key_id: $AWS_ACCESS_KEY_ID
+#     secret_access_key: $AWS_SECRET_ACCESS_KEY
+#     bucket: ""
+#     key: latest/latest.zip
