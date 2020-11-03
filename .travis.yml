@@ -46,4 +46,4 @@ deploy:
     region: us-east-2
     wait_until_deployed: true
     on:
-        branch: master
+        branch: travis2
