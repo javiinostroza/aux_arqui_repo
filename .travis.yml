@@ -32,13 +32,13 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     local_dir: dpl_cd_upload
     skip_cleanup: true 
-    bucket: ""
+    bucket: "16arqsis-travis-s3"
     region: us-east-2 
     upload-dir: latest
     provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: ""
+    bucket: "16arqsis-travis-s3"
     key: latest/latest.zip
     bundle: zip
     application: 16v2-travis
