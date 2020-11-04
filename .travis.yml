@@ -12,9 +12,6 @@ script:
     - sed -i -e 's/\r$/\n/' start.sh
     - sed -i -e 's/\r$/\n/' stop.sh
     - sed -i -e 's/\r$/\n/' install.sh #correct files endings
-    # - bash start.sh
-    # - bash stop.sh
-    # - bash install.sh
     - zip -r latest *
     - mkdir -p dpl_cd_upload
     - mv latest.zip dpl_cd_upload/latest.zip
