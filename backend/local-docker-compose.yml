@@ -38,6 +38,8 @@ services:
       - "7777:7777"
     command:
       "npm run start"
+    env_file: 
+      - /home/ec2-user/secrets/.env
     environment: 
       - NODE_ENV=production
 
