@@ -12,13 +12,13 @@ permissions:
 hooks:
   ApplicationStop:
     - location: stop.sh
-    timeout: 600
-    runas: ec2-user
+      timeout: 600
+      runas: ec2-user
   AfterInstall:
     - location: install.sh
-    timeout: 600
-    runas: ec2-user
+      timeout: 600
+      runas: ec2-user
   ApplicationStart:
     - location: start.sh
-    timeout: 600
-    runas: ec2-user
+      timeout: 600
+      runas: ec2-user
