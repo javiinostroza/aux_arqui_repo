@@ -29,6 +29,19 @@ services:
         - ./nginx-conf:/etc/nginx/conf.d
     ports:
         - 80:80
+  
+  api:
+    container_name: 16arqsisv2
+    image: 556070822500.dkr.ecr.us-east-2.amazonaws.com/16arqsisv2:latest
+    restart: always
+    ports:
+      - "7777:7777"
+    command:
+      "npm run start"
+    env_file: 
+      - /home/ec2-user/secrets/.env
+    environment: 
+      - NODE_ENV=production
 
   wordpress:
     depends_on:
