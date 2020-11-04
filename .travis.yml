@@ -1,4 +1,4 @@
-language: bash
+language: ruby
 
 sudo: required
 
@@ -43,7 +43,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "16arqsis-travis-s3"
     key: latest/latest.zip
-    bundle: zip
+    bundle_type: zip
     application: 16v2-travis
     deployment_group: 16v2-travis-staging
     region: us-east-2
