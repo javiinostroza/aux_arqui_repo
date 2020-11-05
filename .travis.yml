@@ -19,7 +19,7 @@ script:
 after_success:
     - docker --version
     - pip install --user awscli #instala el cliente de aws
-    - export PATH=$PATH:$HOME/.local/bin # pone aws en el path 
+    - export PATH=$PATH:$HOME/.local/bin # pone aws en el path
     - eval $(aws ecr get-login --region us-east2 --no-include-email) #necesita AWS_ACCESS_KEY_ID y AWS_SECRET_ACCESS_KEY envars
     - docker build -t $AWS_ECR_API:latest api
     - docker tag $AWS_ECR_API:latest
