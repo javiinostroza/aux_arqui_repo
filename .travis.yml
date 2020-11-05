@@ -4,10 +4,6 @@ sudo: required
 
 services: docker
 
-branches:
-    only:
-        - travis2
-
 script: 
     - cd backend
     # - docker-compose -f local-docker-compose.yml build
@@ -39,6 +35,8 @@ deploy:
   bucket: "16arqsis-travis-s3"
   region: us-east-2 
   upload-dir: latest
+  on:
+    branch: travis2
 - provider: codedeploy
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
