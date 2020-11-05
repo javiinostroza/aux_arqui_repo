@@ -11,7 +11,6 @@ script:
     - docker-compose -f local-docker-compose.yml run web rspec --format documentation spec/models/room_spec.rb
     - docker-compose -f local-docker-compose.yml run web rspec --format documentation spec/models/room_message_spec.rb
     - docker-compose -f local-docker-compose.yml up -d
-    - echo "no tests"
     # - bash start.sh
     # - bash stop.sh
     # - bash install.sh
@@ -21,9 +20,9 @@ script:
     
 after_success:
     - docker --version
-    - pip install --user awscli #instala el cliente de aws
-    - export PATH=$PATH:$HOME/.local/bin # pone aws en el path 
-    - eval $(aws ecr get-login --region us-east2 --no-include-email) #necesita AWS_ACCESS_KEY_ID y AWS_SECRET_ACCESS_KEY envars
+    - pip install --user awscli # AWS client instalation 
+    - export PATH=$PATH:$HOME/.local/bin 
+    - eval $(aws ecr get-login --region us-east2 --no-include-email) 
     - docker build -t $AWS_ECR_API:latest pai
     - docker tag $AWS_ECR_API:latest
     - docker push $AWS_ECR_API:latest
