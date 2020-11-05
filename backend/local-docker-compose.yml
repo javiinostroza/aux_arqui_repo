@@ -20,26 +20,43 @@ services:
   #   environment:
   #     - RAILS_ENV=development
       
-  # nginx:
-  #   image: nginx:mainline-alpine
-  #   container_name: nginx
-  #   depends_on:
-  #       - web
-  #   volumes:
-  #       - ./nginx-conf:/etc/nginx/conf.d
-  #   ports:
-  #       - 80:80
-  
-  api:
+  nginx:
+    image: nginx:mainline-alpine
+    container_name: nginx
+    depends_on:
+        - web
+    volumes:
+        - ./nginx-conf:/etc/nginx/conf.d
+    ports:
+        - 80:80
+
+    web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
     container_name: 16arqsisv2
     image: 556070822500.dkr.ecr.us-east-2.amazonaws.com/16arqsisv2:latest
     restart: always
+    volumes:
+      - .:/myapp
     ports:
-      - "7777:7777"
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
-
-    environment: 
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
       - RAILS_ENV=development
+  
+  # api:
+  #   container_name: 16arqsisv2
+  #   image: 556070822500.dkr.ecr.us-east-2.amazonaws.com/16arqsisv2:latest
+  #   restart: always
+  #   ports:
+  #     - "7777:7777"
+  #   command: bash -c "rm -f tmp/pids/server.pid && bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
+
+  #   environment: 
+  #     - RAILS_ENV=development
 
 #   wordpress:
 #     depends_on:
