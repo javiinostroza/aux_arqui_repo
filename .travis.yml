@@ -4,6 +4,10 @@ sudo: required
 
 services: docker
 
+branches:
+    only:
+        - travis2
+
 script: 
     - cd backend
     # - docker-compose -f local-docker-compose.yml build
