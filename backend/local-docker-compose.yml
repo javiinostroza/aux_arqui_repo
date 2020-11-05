@@ -20,15 +20,15 @@ services:
   #   environment:
   #     - RAILS_ENV=development
       
-  nginx:
-    image: nginx:mainline-alpine
-    container_name: nginx
-    depends_on:
-        - web
-    volumes:
-        - ./nginx-conf:/etc/nginx/conf.d
-    ports:
-        - 80:80
+  # nginx:
+  #   image: nginx:mainline-alpine
+  #   container_name: nginx
+  #   depends_on:
+  #       - web
+  #   volumes:
+  #       - ./nginx-conf:/etc/nginx/conf.d
+  #   ports:
+  #       - 80:80
   
   api:
     container_name: 16arqsisv2
