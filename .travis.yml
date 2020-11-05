@@ -1,0 +1,51 @@
+language: bash
+
+sudo: required
+
+services: docker
+
+script: 
+    - cd backend
+    - docker-compose -f local-docker-compose.yml build
+    - docker-compose -f local-docker-compose.yml run web rspec --format documentation spec/models/user_spec.rb
+    - docker-compose -f local-docker-compose.yml run web rspec --format documentation spec/models/room_spec.rb
+    - docker-compose -f local-docker-compose.yml run web rspec --format documentation spec/models/room_message_spec.rb
+    - docker-compose -f local-docker-compose.yml up -d
+    # - bash start.sh
+    # - bash stop.sh
+    # - bash install.sh
+    - zip -r latest *
+    - mkdir -p dpl_cd_upload
+    - mv latest.zip dpl_cd_upload/latest.zip
+    
+after_success:
+    - docker --version
+    - pip install --user awscli # AWS client instalation 
+    - export PATH=$PATH:$HOME/.local/bin 
+    - eval $(aws ecr get-login --region us-east2 --no-include-email) 
+    - docker build -t $AWS_ECR_API:latest pai
+    - docker tag $AWS_ECR_API:latest
+    - docker push $AWS_ECR_API:latest
+    - docker images
+    
+deploy:
+    provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    local_dir: dpl_cd_upload
+    skip_cleanup: true 
+    bucket: "16arqsis-travis-s3"
+    region: us-east-2 
+    upload-dir: latest
+    provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: "16arqsis-travis-s3"
+    key: latest/latest.zip
+    bundle: zip
+    application: 16v2-travis
+    deployment_group: 16v2-travis-staging
+    region: us-east-2
+    wait_until_deployed: true
+    on:
+        branch: travis2
