@@ -48,6 +48,7 @@ deploy:
   application: 16v2-travis
   deployment_group: 16v2-travis-staging
   region: us-east-2
+  file_exists_behavior: overwrite
   wait_until_deployed: true
   on:
     branch: main
