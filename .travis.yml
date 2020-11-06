@@ -8,7 +8,8 @@ script:
     - cd backend
     - sed -i -e 's/\r$/\n/' start.sh
     - sed -i -e 's/\r$/\n/' stop.sh
-    - sed -i -e 's/\r$/\n/' install.sh #correct files ending 
+    - sed -i -e 's/\r$/\n/' install.sh #correct files ending
+    - docker-compose -f local-docker-compose.yml build
     - docker-compose -f local-docker-compose.yml run 16arqsisv2 rspec --format documentation spec/models/user_spec.rb
     - docker-compose -f local-docker-compose.yml run 16arqsisv2 rspec --format documentation spec/models/room_spec.rb
     - docker-compose -f local-docker-compose.yml run 16arqsisv2 rspec --format documentation spec/models/room_message_spec.rb
