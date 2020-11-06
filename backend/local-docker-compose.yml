@@ -34,17 +34,6 @@ services:
     ports:
         - 80:80
 
-  # api:
-  #   container_name: 16arqsisv2
-  #   image: 556070822500.dkr.ecr.us-east-2.amazonaws.com/16arqsisv2:latest
-  #   restart: always
-  #   ports:
-  #     - "7777:7777"
-  #   command: bash -c "rm -f tmp/pids/server.pid && bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
-
-  #   environment: 
-  #     - RAILS_ENV=development
-
 #   wordpress:
 #     depends_on:
 #       - db
