@@ -9,7 +9,7 @@ script:
     - sed -i -e 's/\r$/\n/' start.sh
     - sed -i -e 's/\r$/\n/' stop.sh
     - sed -i -e 's/\r$/\n/' install.sh #correct files ending
-    - docker-compose -f local-docker-compose.yml run 16arqsisv2 bundle install
+    - docker-compose -f local-docker-compose.yml build
     - docker-compose -f local-docker-compose.yml run 16arqsisv2 rspec --format documentation spec/models/user_spec.rb
     - docker-compose -f local-docker-compose.yml run 16arqsisv2 rspec --format documentation spec/models/room_spec.rb
     - docker-compose -f local-docker-compose.yml run 16arqsisv2 rspec --format documentation spec/models/room_message_spec.rb
@@ -19,7 +19,8 @@ script:
     
 after_success:
     - docker --version
-    - pip install --user awscli
+    - pip install --user awscli 
+    - aws--file-exists-behavior RETAIN
     - export PATH=$PATH:$HOME/.local/bin
     - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 556070822500.dkr.ecr.us-east-2.amazonaws.com
     - docker build -t 16arqsisv2 .
