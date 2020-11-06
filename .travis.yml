@@ -19,8 +19,7 @@ script:
     
 after_success:
     - docker --version
-    - pip install --user awscli 
-    - aws--file-exists-behavior RETAIN
+    - pip install --user awscli
     - export PATH=$PATH:$HOME/.local/bin
     - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 556070822500.dkr.ecr.us-east-2.amazonaws.com
     - docker build -t 16arqsisv2 .
@@ -48,7 +47,6 @@ deploy:
   application: 16v2-travis
   deployment_group: 16v2-travis-staging
   region: us-east-2
-  file_exists_behavior: overwrite
   wait_until_deployed: true
   on:
     branch: main
