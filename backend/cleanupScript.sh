@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -r log
+rm -rf log
