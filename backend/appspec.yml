@@ -2,23 +2,23 @@ version: 0.0
 os: linux
 
 files:
-    - source: scripts
+  - source: /
     destination: /home/ec2-user/iic2173-proyecto-semestral-grupo-16v2/backend
 permissions:
-    - object: scripts
+  - object: /
     pattern: "**"
     owner: ec2-user
     
 hooks:
   ApplicationStop:
     - location: stop.sh
-    timeout: 600
-    runas: ec2-user
+      timeout: 600
+      runas: ec2-user
   AfterInstall:
     - location: install.sh
-    timeout: 600
-    runas: ec2-user
+      timeout: 600
+      runas: ec2-user
   ApplicationStart:
     - location: start.sh
-    timeout: 600
-    runas: ec2-user
+      timeout: 600
+      runas: ec2-user

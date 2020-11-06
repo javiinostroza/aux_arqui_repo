@@ -6,11 +6,15 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
-  web:
+
+  16arqsisv2:
     build:
       context: .
       dockerfile: Dockerfile
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    container_name: 16arqsisv2
+    image: 556070822500.dkr.ecr.us-east-2.amazonaws.com/16arqsisv2:latest
+    restart: always
     volumes:
       - .:/myapp
     ports:
@@ -19,30 +23,41 @@ services:
       - db
     environment:
       - RAILS_ENV=development
-      
+
   nginx:
     image: nginx:mainline-alpine
     container_name: nginx
     depends_on:
-        - web
+        - 16arqsisv2
     volumes:
         - ./nginx-conf:/etc/nginx/conf.d
     ports:
         - 80:80
 
-  wordpress:
-    depends_on:
-      - db
-    image: wordpress:latest
-    ports:
-      - "8000:80"
-    restart: always
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
+  # api:
+  #   container_name: 16arqsisv2
+  #   image: 556070822500.dkr.ecr.us-east-2.amazonaws.com/16arqsisv2:latest
+  #   restart: always
+  #   ports:
+  #     - "7777:7777"
+  #   command: bash -c "rm -f tmp/pids/server.pid && bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rails s -p 3000 -b '0.0.0.0'"
+
+  #   environment: 
+  #     - RAILS_ENV=development
+
+#   wordpress:
+#     depends_on:
+#       - db
+#     image: wordpress:latest
+#     ports:
+#       - "8000:80"
+#     restart: always
+#     environment:
+#       WORDPRESS_DB_HOST: db:3306
+#       WORDPRESS_DB_USER: wordpress
+#       WORDPRESS_DB_PASSWORD: wordpress
+#       WORDPRESS_DB_NAME: wordpress
       
-volumes:
-  db_data: {}
+# volumes:
+#   db_data: {}
 
