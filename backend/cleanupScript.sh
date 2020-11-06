@@ -1,3 +1,3 @@
 #!/bin/bash
-# rm -rf log
-# rm -rf tmp
+sudo rm -rf log
+sudo rm -rf tmp
