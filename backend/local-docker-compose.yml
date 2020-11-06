@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_PASSWORD: password
 
-  web:
+  16arqsisv2:
     build:
       context: .
       dockerfile: Dockerfile
@@ -28,7 +28,7 @@ services:
     image: nginx:mainline-alpine
     container_name: nginx
     depends_on:
-        - web
+        - 16arqsisv2
     volumes:
         - ./nginx-conf:/etc/nginx/conf.d
     ports:
