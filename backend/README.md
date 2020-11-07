@@ -14,12 +14,12 @@ telnet ec2-database.cjbtc3b7ofay.us-east-1.rds.amazonaws.com 5432
  - Instalar `docker-compose`
 
 **Local**
- 1. `docker-compose -f local-docker-compose.yml build`
- 2. `docker-compose -f local-docker-compose.yml up`
+ 1. `docker-compose -f test-docker-compose.yml build`
+ 2. `docker-compose -f test-docker-compose.yml up`
 
 **Desarrollo (ambiente usado para correr en el servidor)**
- 1. `docker-compose -f development-docker-compose.yml build`
- 2. `docker-compose -f development-docker-compose.yml up` (gestión de HTTPS con Traefik como container, sin implementación del chequeo de certificado cada 12 horas)
+ 1. `docker-compose -f local-docker-compose.yml build`
+ 2. `docker-compose -f local-docker-compose.yml up` (gestión de HTTPS con Traefik como container, sin implementación del chequeo de certificado cada 12 horas)
 
 # API:
 
