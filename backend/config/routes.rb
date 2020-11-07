@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   post 'change_email', to: 'users#set_email'
   post 'uploadphoto', to: "users#uploadphoto"
   get 'getroommessagesonpdf', to: 'rooms#getroommessagespdf'
+  post 'auth/sign_in', to: 'auth#sign_in'
+  post 'auth/sign_out', to: 'auth#sign_out'
 end

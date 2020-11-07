@@ -173,3 +173,6 @@ build-iPhoneSimulator/
 
 # Private keys from Let's Encrypt SSL Certifcate
 /letsencrypt
+
+# Ignore application configuration
+/config/application.yml
