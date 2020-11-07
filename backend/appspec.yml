@@ -4,6 +4,7 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user/iic2173-proyecto-semestral-grupo-16v2/backend
+    overwrite: true
 permissions:
   - object: /
     pattern: "**"
@@ -20,6 +21,8 @@ hooks:
     - location: install.sh
       timeout: 600
       runas: ec2-user
+  BeforeAplicationStart:
+    - location: afterinstall.sh
   ApplicationStart:
     - location: start.sh
       timeout: 600

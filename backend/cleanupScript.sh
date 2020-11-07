@@ -1,3 +1,5 @@
 #!/bin/bash
-sudo rm -rf log
-sudo rm -rf tmp
+if [ -d /home/ec2-user/iic2173-proyecto-semestral-grupo-16v2/backend ]; then
+    rm -rf /home/ec2-user/iic2173-proyecto-semestral-grupo-16v2/backend
+fi
+mkdir -vp /home/ec2-user/iic2173-proyecto-semestral-grupo-16v2/backend
