@@ -73,7 +73,7 @@ class UsersController < ApplicationController
 
     request = Net::HTTP::Post.new(url)
     request["content-type"] = 'application/json'
-    request.body = "{\"client_id\":\"#{Rails.application.secrets.client_id}\",\"client_secret\":\"#{Rails.application.secrets.client_secret}\",\"email\":\"#{user.email}\",\"password\":\"#{user.password}\",\"connection\":\"Username-Password-Authentication\",\"user_metadata\":{ \"id\": \"#{user.id}\",\"username\": \"#{user.username}\"}}"
+    request.body = "{\"client_id\":\"#{Rails.application.secrets.client_id}\",\"client_secret\":\"#{Rails.application.secrets.client_secret}\",\"email\":\"#{user.email}\",\"password\":\"#{user.password}\",\"connection\":\"Username-Password-Authentication\",\"user_metadata\":{ \"id\": \"#{user.id}\",\"username\": \"#{user.username}\", \"is_admin\": \"#{user.is_admin}\"}}"
 
     response = http.request(request)
     puts "---------------------------------------------------"
