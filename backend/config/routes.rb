@@ -14,6 +14,5 @@ Rails.application.routes.draw do
   get 'authorized', to: 'sessions#page_requires_login'
   post 'sendmessage', to: 'room_messages#new_message'
   post 'change_email', to: 'users#set_email'
-  post 'uploadphoto', to: "users#uploadphoto"
-  get 'getroommessagesonpdf', to: 'rooms#getroommessagespdf'
+  delete 'rooms', to: 'rooms#destroy'
 end
