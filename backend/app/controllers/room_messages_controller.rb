@@ -5,7 +5,6 @@ class RoomMessagesController < ApplicationController
   def index
     @messages = RoomMessage.all
     render json: @messages
-
   end
 
   def show
