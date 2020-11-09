@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     parameters[:user][:password] = @params['password']
     parameters[:user][:email] = @params['email']
     @user = User.create(parameters.require(:user).permit(:username, :password, :email, :is_admin))
-    # self.create_auth0_user(@user)
+    self.create_auth0_user(@user)
     render json: @user 
   end
 
