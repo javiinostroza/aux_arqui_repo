@@ -4,6 +4,12 @@ class RoomsController < ApplicationController
   # @rooms = all rooms
   # @room = current room when applicable
   before_action :load_entities
+  
+  def destroy
+    @rooms = Room.all
+    @room = Room.find(params[:id]) if params[:id]
+    @room.destroy
+  end
 
   def index
     @rooms = Room.all
@@ -120,6 +126,8 @@ class RoomsController < ApplicationController
     @rooms = Room.all
     @room = Room.find(params[:id]) if params[:id]
   end
+
+  
 
   def permitted_parameters
     params.permit(:name)
