@@ -2,10 +2,31 @@ class RoomMessagesController < ApplicationController
   #before_action :load_entities
   skip_before_action :authorized
 
+  def index
+    @messages = RoomMessage.all
+    puts @messages
+    render json: @messages
+
+  end
+
+  def show
+    message = RoomMessage.find(params[:id])
+    render json: message
+  end
+  
+
+  
+
   def destroy
-    @room_mesages = RoomMessage.all
+
     @room_message = RoomMessage.find(params[:id]) if params[:id]
     @room_message.destroy
+  end
+
+  def update
+    @room_message = RoomMessage.find(params[:id]) if params[:id]
+    @room_message.update({message: params[:message]})
+
   end
 
   def create
