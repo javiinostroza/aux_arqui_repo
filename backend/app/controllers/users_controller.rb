@@ -1,3 +1,6 @@
+require 'uri'
+require 'net/http'
+
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create, :set_email, :uploadphoto]
 
@@ -12,7 +15,9 @@ class UsersController < ApplicationController
     parameters = ActionController::Parameters.new({
       user: {
         username: "",
-        password: "password"
+        password: "password",
+        email: "",
+        is_admin: false
       }
     })
     if params[:anon] == "true"
@@ -20,7 +25,12 @@ class UsersController < ApplicationController
     else
       parameters[:user][:username] = params[:username]
     end
-    @user = User.create(parameters.require(:user).permit(:username))
+    @params = JSON.parse(request.body.read)
+    parameters[:user][:username] = @params['username']
+    parameters[:user][:password] = @params['password']
+    parameters[:user][:email] = @params['email']
+    @user = User.create(parameters.require(:user).permit(:username, :password, :email, :is_admin))
+    self.create_auth0_user(@user)
     render json: @user 
   end
 
@@ -52,5 +62,22 @@ class UsersController < ApplicationController
     @user.thumbnail_url = url_photo
     @user.save
     render json: @user
+  end
+
+  def create_auth0_user(user)
+    url = URI("https://dev-3qxptrmu.us.auth0.com/dbconnections/signup")
+
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Post.new(url)
+    request["content-type"] = 'application/json'
+    request.body = "{\"client_id\":\"#{Rails.application.secrets.client_id}\",\"client_secret\":\"#{Rails.application.secrets.client_secret}\",\"email\":\"#{user.email}\",\"password\":\"#{user.password}\",\"connection\":\"Username-Password-Authentication\",\"user_metadata\":{ \"id\": \"#{user.id}\",\"username\": \"#{user.username}\", \"is_admin\": \"#{user.is_admin}\"}}"
+
+    response = http.request(request)
+    puts "---------------------------------------------------"
+    puts response.read_body
+    puts "---------------------------------------------------"
   end
 end
