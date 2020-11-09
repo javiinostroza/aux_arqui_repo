@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :rooms
   resources :users, only: [:new, :create, :uploadphoto]
 
+  post 'upload' => 'file#get_file'
   root 'sessions#welcome'
   get 'welcome', to: 'sessions#welcome'
   get 'login', to: 'sessions#new'
