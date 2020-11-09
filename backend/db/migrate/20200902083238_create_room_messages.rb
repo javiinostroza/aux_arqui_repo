@@ -4,6 +4,7 @@ class CreateRoomMessages < ActiveRecord::Migration[5.2]
       t.references :room, foreign_key: true
       t.references :user, foreign_key: true
       t.text :message
+      t.text :oldmessage
 
       t.timestamps
     end

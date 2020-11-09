@@ -2,35 +2,56 @@ class RoomMessagesController < ApplicationController
   #before_action :load_entities
   skip_before_action :authorized
 
+  def index
+    @messages = RoomMessage.all
+    render json: @messages
+  end
+
+  def show
+    message = RoomMessage.find(params[:id])
+    render json: message
+  end 
+
+  def destroy
+    @room_message = RoomMessage.find(params[:id]) if params[:id]
+    @room_message.destroy
+  end
+
+  def update
+    @room_message = RoomMessage.find(params[:id]) if params[:id]
+    @room_message.update({message: params[:message]})
+
+  end
+
   def create
-    messagetxt = params.dig(:room_message, :message)
-    new_message = ""
-    if messagetxt == "/reset"
-      @room.room_messages.destroy_all
-      @room.reversed = false
-      @room.save
-      new_message = "Room has been reset"
-    elsif messagetxt == "/reverse"
-      @room.reversed = !@room.reversed
-      @room.save
-      new_message = "Messages have been reversed!"
-    elsif messagetxt[0..9] == "/nameroom "
-      messagetxt.slice!(0..9)
-      messagetxt = messagetxt.strip
-      new_message = "Error: New room name can't be blank!"
-      if !messagetxt.nil? && !messagetxt.empty?
-        new_name = messagetxt.strip
-        @search = Room.find_by_name(new_name)
-        if !@search.blank?
-          new_message = "Error: Room name \'#{new_name}\' already exists"
-        else 
-          prev_name = @room.name 
-          @room.name = new_name
-          @room.save
-          new_message = "Room name has changed: (#{prev_name}->#{@room.name}) succesfully"
-        end
-      end
-    end
+    messagetxt = params.dig(:room_message, :message, :oldmessage)
+    # new_message = ""
+    # if messagetxt == "/reset"
+    #   @room.room_messages.destroy_all
+    #   @room.reversed = false
+    #   @room.save
+    #   new_message = "Room has been reset"
+    # elsif messagetxt == "/reverse"
+    #   @room.reversed = !@room.reversed
+    #   @room.save
+    #   new_message = "Messages have been reversed!"
+    # elsif messagetxt[0..9] == "/nameroom "
+    #   messagetxt.slice!(0..9)
+    #   messagetxt = messagetxt.strip
+    #   new_message = "Error: New room name can't be blank!"
+    #   if !messagetxt.nil? && !messagetxt.empty?
+    #     new_name = messagetxt.strip
+    #     @search = Room.find_by_name(new_name)
+    #     if !@search.blank?
+    #       new_message = "Error: Room name \'#{new_name}\' already exists"
+    #     else 
+    #       prev_name = @room.name 
+    #       @room.name = new_name
+    #       @room.save
+    #       new_message = "Room name has changed: (#{prev_name}->#{@room.name}) succesfully"
+    #     end
+    #   end
+    # end
     if !new_message.nil? && !new_message.empty?
       if @room.reversed
         new_message = new_message.reverse
@@ -40,7 +61,8 @@ class RoomMessagesController < ApplicationController
     if !messagetxt.nil? && !messagetxt.empty?
       @room_message = RoomMessage.create user: current_user,
                                        room: @room,
-                                       message: messagetxt
+                                       message: messagetxt,
+                                       oldmessage: messagetxt
     end
     redirect_to room_path(@room)
   end
@@ -80,7 +102,7 @@ class RoomMessagesController < ApplicationController
       puts "---------------"
       puts "no mention"
     end
-    message = RoomMessage.create user: current_user, room: room, message: params[:message]
+    message = RoomMessage.create user: current_user, room: room, message: params[:message], oldmessage: params[:message]
     room_messages = RoomMessage.joins(:room).joins(:user).where(room_id: params[:room_id]).select('room_messages.*, users.username')
 
     return render json: {
