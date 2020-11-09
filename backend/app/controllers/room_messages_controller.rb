@@ -2,6 +2,12 @@ class RoomMessagesController < ApplicationController
   #before_action :load_entities
   skip_before_action :authorized
 
+  def destroy
+    @room_mesages = RoomMessage.all
+    @room_message = RoomMessage.find(params[:id]) if params[:id]
+    @room_message.destroy
+  end
+
   def create
     messagetxt = params.dig(:room_message, :message)
     new_message = ""
