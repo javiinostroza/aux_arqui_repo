@@ -15,8 +15,8 @@ hooks:
     - location: stop.sh
       timeout: 600
       runas: ec2-user
-  # BeforeInstall:
-  #   - location: cleanupScript.sh
+  BeforeInstall:
+    - location: cleanupScript.sh
   AfterInstall:
     - location: install.sh
       timeout: 600
