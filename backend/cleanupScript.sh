@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /home/ec2-user/iic2173-proyecto-semestral-grupo-16v2/backend
+cd /home/ec2-user/aux_arqui_repo/backend
 sudo rm -v !(".env")
 sudo rm -rf */

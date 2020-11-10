@@ -3,7 +3,7 @@ os: linux
 
 files:
   - source: /
-    destination: /home/ec2-user/iic2173-proyecto-semestral-grupo-16v2/backend
+    destination: /home/ec2-user/aux_arqui_repo/backend
     overwrite: true
 permissions:
   - object: /
