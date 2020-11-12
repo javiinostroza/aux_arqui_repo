@@ -37,7 +37,7 @@ deploy:
   region: us-east-2 
   upload-dir: latest
   on:
-    branch: master
+    branch: main
 - provider: codedeploy
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
@@ -50,4 +50,4 @@ deploy:
   file_exists_behaviour: OVERWRITE
   wait_until_deployed: true
   on:
-    branch: master
+    branch: main
