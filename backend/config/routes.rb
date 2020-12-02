@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   post 'change_email', to: 'users#set_email'
   delete 'rooms', to: 'rooms#destroy'
   get 'monitoring_ec2' => 'monitoring#get_ec2_graph'
-  get 'monitoring_s3' => 'monitoring#get_graph'
+  get 'monitoring_s3' => 'monitoring#get_s3_graph'
   get 'monitoring_elb' => 'monitoring#get_graph'
 end
