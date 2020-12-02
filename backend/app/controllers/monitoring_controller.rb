@@ -1,7 +1,7 @@
 require 'net/http'
 require 'aws-sdk'
 require "base64"
-
+require 'tempfile'
 class MonitoringController < ActionController::API
   
     def get_graph
@@ -24,35 +24,39 @@ class MonitoringController < ActionController::API
         })
         puts "INSTANCE ID", instance_id
         puts "-------------------------"
-        puts resp.is_a?(Hash)
-        #puts decoded.to_s
-        #File.open('graph.png', 'w') { |file| file.write(decoded) }
-        File.open('grafico1.png', 'wb') do |f|
-          f.write(Base64.decode64(resp[:metric_widget_image]))
+        puts resp.metric_widget_image.is_a?(String)
+        puts resp
+
+        File.open('grafico.png', 'wb') do |f|
+          f.write(resp.metric_widget_image)
         end
-        @image = Base64.decode64(resp[:metric_widget_image])
-        #render json: {"message": "f"}
     end
 
     def metric_widget_param
      '{
-        "metrics": [
-            [ "AWS/EC2", "CPUUtilization", "InstanceId", "i-0048802b8b50ac26d", { "stat": "Average", "id": "m0r0", "label": "travis-test" } ],
-            [ "...", "i-0a00c317000ba9a77", { "stat": "Average", "id": "m0r1", "label": "travis-auto" } ],
-            [ "...", "i-065297c758b245b1e", { "stat": "Average", "id": "m0r2", "label": "Master" } ],
-            [ "...", "i-0909bbc9f9ef63f19", { "stat": "Average", "id": "m0r3", "label": "auto-renew" } ]
-        ],
-        "title": "CPU Utilization Average",
-        "copilot": true,
-        "legend": {
-            "position": "bottom"
-        },
-        "view": "timeSeries",
-        "stacked": false,
-        "width": 1095,
-        "height": 187,
-        "start": "-PT3H",
-        "end": "P0D"
+      "yAxis": {
+          "left": {
+              "min": 0,
+              "max": 100
+          }
+      },
+      "metrics": [
+          [ "AWS/EC2", "CPUUtilization", "InstanceId", "i-0048802b8b50ac26d", { "stat": "Average", "id": "m0r0", "label": "travis-test" } ],
+          [ "...", "i-0a00c317000ba9a77", { "stat": "Average", "id": "m0r1", "label": "travis-auto" } ],
+          [ "...", "i-065297c758b245b1e", { "stat": "Average", "id": "m0r2", "label": "Master" } ],
+          [ "...", "i-0909bbc9f9ef63f19", { "stat": "Average", "id": "m0r3", "label": "auto-renew" } ]
+      ],
+      "title": "CPU Utilization Average",
+      "copilot": true,
+      "legend": {
+          "position": "bottom"
+      },
+      "view": "timeSeries",
+      "stacked": false,
+      "width": 1649,
+      "height": 250,
+      "start": "-PT3H",
+      "end": "P0D"
     }'
     end
   end
