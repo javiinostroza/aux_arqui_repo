@@ -115,7 +115,7 @@ class MonitoringController < ActionController::API
        },
        "view": "timeSeries",
        "stacked": false,
-       "width": 1095,
+       "width": 600,
        "height": 187,
        "start": "-PT3H",
        "end": "P0D"
@@ -137,7 +137,7 @@ class MonitoringController < ActionController::API
         },
         "view": "timeSeries",
         "stacked": false,
-        "width": 1095,
+        "width": 600,
         "height": 187,
         "start": "-PT3H",
         "end": "P0D"
@@ -159,7 +159,7 @@ class MonitoringController < ActionController::API
         },
         "view": "timeSeries",
         "stacked": false,
-        "width": 1095,
+        "width": 600,
         "height": 187,
         "start": "-PT3H",
         "end": "P0D"
@@ -183,7 +183,7 @@ class MonitoringController < ActionController::API
         "copilot": true,
         "view": "timeSeries",
         "stacked": false,
-        "width": 1095,
+        "width": 600,
         "height": 187,
         "start": "-PT3H",
         "end": "P0D"
@@ -207,7 +207,7 @@ class MonitoringController < ActionController::API
         "copilot": true,
         "view": "timeSeries",
         "stacked": false,
-        "width": 1095,
+        "width": 600,
         "height": 187,
         "start": "-PT3H",
         "end": "P0D"
@@ -228,7 +228,7 @@ class MonitoringController < ActionController::API
         "stacked": false,
         "stat": "Sum",
         "period": 300,
-        "width": 1649,
+        "width": 600,
         "height": 250,
         "start": "-PT3H",
         "end": "P0D"
@@ -247,7 +247,7 @@ class MonitoringController < ActionController::API
         "copilot": true,
         "view": "timeSeries",
         "stacked": false,
-        "width": 1649,
+        "width": 600,
         "height": 250,
         "start": "-PT3H",
         "end": "P0D"
@@ -266,7 +266,7 @@ class MonitoringController < ActionController::API
         "copilot": true,
         "view": "timeSeries",
         "stacked": false,
-        "width": 1649,
+        "width": 600,
         "height": 250,
         "start": "-PT3H",
         "end": "P0D"
