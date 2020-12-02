@@ -30,6 +30,11 @@ class MonitoringController < ActionController::API
         File.open('grafico.png', 'wb') do |f|
           f.write(resp.metric_widget_image)
         end
+
+        @image = resp.metric_widget_image
+
+        # render json: resp.metric_widget_image
+        send_data @image, :type => 'image/png', :disposition => 'inline'
     end
 
     def metric_widget_param
