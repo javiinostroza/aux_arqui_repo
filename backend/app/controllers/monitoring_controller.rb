@@ -95,8 +95,8 @@ class MonitoringController < ActionController::API
         @image_3 =  Base64.strict_encode64(resp_3.metric_widget_image)
 
         graphs = {"cpu": @image_1, "network": @image_2, "failed_status": @image_3}
-        #render json: graphs
-        send_data resp_1.metric_widget_image, :type => 'image/png', :disposition => 'inline'
+        render json: graphs
+        #send_data resp_1.metric_widget_image, :type => 'image/png', :disposition => 'inline'
     end
     
 
