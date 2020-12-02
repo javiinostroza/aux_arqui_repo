@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   post 'sendmessage', to: 'room_messages#new_message'
   post 'change_email', to: 'users#set_email'
   delete 'rooms', to: 'rooms#destroy'
+  get 'monitoring' => 'monitoring#get_graph'
 end

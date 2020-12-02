@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_062749) do
     t.bigint "room_id"
     t.bigint "user_id"
     t.text "message"
-    t.text "oldmessage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_room_messages_on_room_id"
