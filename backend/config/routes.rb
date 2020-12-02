@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   delete 'rooms', to: 'rooms#destroy'
   get 'monitoring_ec2' => 'monitoring#get_ec2_graph'
   get 'monitoring_s3' => 'monitoring#get_graph'
-  get 'monitoring_elb' => 'monitoring#get_graph'
+  get 'monitoring_elb' => 'monitoring#get_elb_graph'
 end
