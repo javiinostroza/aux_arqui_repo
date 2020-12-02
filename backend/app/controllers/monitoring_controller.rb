@@ -31,10 +31,11 @@ class MonitoringController < ActionController::API
           f.write(resp.metric_widget_image)
         end
 
-        @image = resp.metric_widget_image
+        @image =  Base64.strict_encode64(resp.metric_widget_image)
 
-        # render json: resp.metric_widget_image
-        send_data @image, :type => 'image/png', :disposition => 'inline'
+
+        render json: @image
+        # send_data @image, :type => 'image/png', :disposition => 'inline'
     end
 
     def metric_widget_param
