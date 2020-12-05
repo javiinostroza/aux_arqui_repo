@@ -2,24 +2,24 @@
 
 Se utilizó CloudFormation de AWS para implementar IaC.\
 El Stack que se incoporó contempla 7 elementos:
-* [AWS::CodeDeploy::**Application**](#AWS::CodeDeploy::Application)
-* [AWS::CodeDeploy::**DeploymentGroup**](#AWS::CodeDeploy::DeploymentGroup)
-* [AWS::AutoScaling::**AutoScalingGroup**](#AWS::AutoScaling::AutoScalingGroup)
-* [AWS::AutoScaling::**LaunchConfiguration**](#AWS::AutoScaling::LaunchConfiguration)
-* [AWS::ElasticLoadBalancingV2::**TargetGroup**](#AWS::ElasticLoadBalancingV2::TargetGroup)
-* [AWS::ElasticLoadBalancingV2::**Listener**](#AWS::ElasticLoadBalancingV2::Listener)
-* [AWS::ElasticLoadBalancingV2::**LoadBalancer**](#AWS::ElasticLoadBalancingV2::LoadBalancer)
+* [AWS::CodeDeploy::Application](#CodeDeploy-Application)
+* [AWS::CodeDeploy::DeploymentGroup](#CodeDeploy-DeploymentGroup)
+* [AWS::AutoScaling::AutoScalingGroup](#AutoScaling-AutoScalingGroup)
+* [AWS::AutoScaling::LaunchConfiguration](#AutoScaling-LaunchConfiguration)
+* [AWS::ElasticLoadBalancingV2::TargetGroup](#ElasticLoadBalancingV2-TargetGroup)
+* [AWS::ElasticLoadBalancingV2::Listener](#ElasticLoadBalancingV2-Listener)
+* [AWS::ElasticLoadBalancingV2::LoadBalancer](#ElasticLoadBalancingV2-LoadBalancer)
 
-Este estack permite replicar la mayoría de la aplicación pero deja de lado algunas partes que pueden ser reutilizadas como lo serían los roles, las imagesId y los perfiles IAM, entre otras cosas. [Esas partes](#Elementos) son requeridas para que funcione el Stack y deben estar creadas para que el Stack se pueda crear.
+Este estack permite replicar la mayoría de la aplicación pero deja de lado algunas partes que pueden ser reutilizadas como lo serían los roles, las imagesId y los perfiles IAM, entre otras cosas. Esas partes son requeridas para que funcione el Stack y deben estar creadas para que el Stack se pueda crear.
 
-## AWS::CodeDeploy::Application
+## CodeDeploy Application
 ```yml
 CDA4VK6:
     Type: 'AWS::CodeDeploy::Application'
     Properties:
       ApplicationName: cloudformation
 ```
-## AWS::CodeDeploy::DeploymentGroup
+## CodeDeploy DeploymentGroup
 Este elemento crea un Deployment Group que se conecta con el [Auto Scaling Group](#AWS::AutoScaling::AutoScalingGroup) creado más adelante y utiliza una IAM que no pertenece al Stack.
 ```yml
 CDDG1H0QK:
@@ -33,7 +33,7 @@ CDDG1H0QK:
       - CDA4VK6
 ```
 
-## AWS::AutoScaling::AutoScalingGroup
+## AutoScaling AutoScalingGroup
 Este elemento crea un Auto Scaling Group que uiliza una [Launch Configuration](#AWS::AutoScaling::LaunchConfiguration) creada más adelante y tambien requiere de un [Target Group](#AWS::ElasticLoadBalancingV2::TargetGroup) creado más adelante.
 ```yml
 ASASG4YLTD:
@@ -50,7 +50,7 @@ ASASG4YLTD:
         - !Ref ELBV2TG39141
 ```
 
-## AWS::AutoScaling::LaunchConfiguration
+## AutoScaling LaunchConfiguration
 Este elemento crea una Launch configuration para el [Auto Scaling Group](#AWS::AutoScaling::AutoScalingGroup) y contiene toda la información necesaria para que este pueda crear instancias. Esta información se saca de elementos externos al Stack. Además en la parte de UserData, contiene lo necesario para que las instancias que se levanten se echen a correr automáticamente.
 ```yml
 ASLC42KNR:
@@ -83,7 +83,7 @@ ASLC42KNR:
         - sg-0484f2ac47190da3d 
 ```
 
-## AWS::ElasticLoadBalancingV2::TargetGroup
+## ElasticLoadBalancingV2 TargetGroup
 Este elemento crea un target group para el [Auto Scaling Group](#AWS::AutoScaling::AutoScalingGroup).
 ```yml
 ELBV2TG39141:
@@ -94,7 +94,7 @@ ELBV2TG39141:
       VpcId: vpc-7a4ae111
 ```
 
-## AWS::ElasticLoadBalancingV2::Listener
+## ElasticLoadBalancingV2 Listener
 Este elemento crea un Listener que conecta el [Target Group](#AWS::ElasticLoadBalancingV2::TargetGroup) con el [Load Balancer](#AWS::ElasticLoadBalancingV2::LoadBalancer).
 ```yml
 ELBV2L2ZHWN:
@@ -111,7 +111,7 @@ ELBV2L2ZHWN:
       - ELBV2LB1HCWG
 ```
 
-## AWS::ElasticLoadBalancingV2::LoadBalancer
+## ElasticLoadBalancingV2 LoadBalancer
 Este elemento crea el Load balancer que se conecta con el [Target Group](#AWS::ElasticLoadBalancingV2::TargetGroup) a través de el [Listener](#AWS::ElasticLoadBalancingV2::Listener) para poder distribuir la carga entre las distintas instancias levantadas por el [Auto Scaling Group](#AWS::AutoScaling::AutoScalingGroup).
 ```yml
 ELBV2LB1HCWG:
