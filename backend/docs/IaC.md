@@ -51,7 +51,7 @@ ASASG4YLTD:
 ```
 
 ## AutoScaling LaunchConfiguration
-Este elemento crea una Launch configuration para el [Auto Scaling Group](#AWS::AutoScaling::AutoScalingGroup) y contiene toda la información necesaria para que este pueda crear instancias. Esta información se saca de elementos externos al Stack. Además en la parte de UserData, contiene lo necesario para que las instancias que se levanten se echen a correr automáticamente.
+Este elemento crea una Launch configuration para el [Auto Scaling Group](#AWS::AutoScaling::AutoScalingGroup) y contiene toda la información necesaria para que este pueda crear instancias. Esta información se saca de elementos externos al Stack. Además, en la parte de UserData, contiene lo necesario para que las instancias que se levanten se echen a correr automáticamente.
 ```yml
 ASLC42KNR:
     Type: 'AWS::AutoScaling::LaunchConfiguration'
