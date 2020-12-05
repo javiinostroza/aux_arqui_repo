@@ -20,7 +20,7 @@ CDA4VK6:
       ApplicationName: cloudformation
 ```
 ## CodeDeploy DeploymentGroup
-Este elemento crea un Deployment Group que se conecta con el [Auto Scaling Group](#AWS::AutoScaling::AutoScalingGroup) creado más adelante y utiliza una IAM que no pertenece al Stack.
+Este elemento crea un Deployment Group que se conecta con el [Auto Scaling Group](#AutoScaling-AutoScalingGroup) creado más adelante y utiliza una IAM que no pertenece al Stack.
 ```yml
 CDDG1H0QK:
     Type: 'AWS::CodeDeploy::DeploymentGroup'
@@ -34,7 +34,7 @@ CDDG1H0QK:
 ```
 
 ## AutoScaling AutoScalingGroup
-Este elemento crea un Auto Scaling Group que uiliza una [Launch Configuration](#AWS::AutoScaling::LaunchConfiguration) creada más adelante y tambien requiere de un [Target Group](#AWS::ElasticLoadBalancingV2::TargetGroup) creado más adelante.
+Este elemento crea un Auto Scaling Group que uiliza una [Launch Configuration](#AutoScaling-LaunchConfiguration) creada más adelante y tambien requiere de un [Target Group](#ElasticLoadBalancingV2-TargetGroup) creado más adelante.
 ```yml
 ASASG4YLTD:
     Type: 'AWS::AutoScaling::AutoScalingGroup'
@@ -51,7 +51,7 @@ ASASG4YLTD:
 ```
 
 ## AutoScaling LaunchConfiguration
-Este elemento crea una Launch configuration para el [Auto Scaling Group](#AWS::AutoScaling::AutoScalingGroup) y contiene toda la información necesaria para que este pueda crear instancias. Esta información se saca de elementos externos al Stack. Además, en la parte de UserData, contiene lo necesario para que las instancias que se levanten se echen a correr automáticamente.
+Este elemento crea una Launch configuration para el [Auto Scaling Group](#AutoScaling-AutoScalingGroup) y contiene toda la información necesaria para que este pueda crear instancias. Esta información se saca de elementos externos al Stack. Además, en la parte de UserData, contiene lo necesario para que las instancias que se levanten se echen a correr automáticamente.
 ```yml
 ASLC42KNR:
     Type: 'AWS::AutoScaling::LaunchConfiguration'
@@ -84,7 +84,7 @@ ASLC42KNR:
 ```
 
 ## ElasticLoadBalancingV2 TargetGroup
-Este elemento crea un target group para el [Auto Scaling Group](#AWS::AutoScaling::AutoScalingGroup).
+Este elemento crea un target group para el [Auto Scaling Group](#AutoScaling-AutoScalingGroup).
 ```yml
 ELBV2TG39141:
     Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
@@ -95,7 +95,7 @@ ELBV2TG39141:
 ```
 
 ## ElasticLoadBalancingV2 Listener
-Este elemento crea un Listener que conecta el [Target Group](#AWS::ElasticLoadBalancingV2::TargetGroup) con el [Load Balancer](#AWS::ElasticLoadBalancingV2::LoadBalancer).
+Este elemento crea un Listener que conecta el [Target Group](#ElasticLoadBalancingV2-TargetGroup) con el [Load Balancer](#ElasticLoadBalancingV2-LoadBalancer).
 ```yml
 ELBV2L2ZHWN:
     Type: 'AWS::ElasticLoadBalancingV2::Listener'
@@ -112,7 +112,7 @@ ELBV2L2ZHWN:
 ```
 
 ## ElasticLoadBalancingV2 LoadBalancer
-Este elemento crea el Load balancer que se conecta con el [Target Group](#AWS::ElasticLoadBalancingV2::TargetGroup) a través de el [Listener](#AWS::ElasticLoadBalancingV2::Listener) para poder distribuir la carga entre las distintas instancias levantadas por el [Auto Scaling Group](#AWS::AutoScaling::AutoScalingGroup).
+Este elemento crea el Load balancer que se conecta con el [Target Group](#ElasticLoadBalancingV2-TargetGroup) a través de el [Listener](#ElasticLoadBalancingV2-Listener) para poder distribuir la carga entre las distintas instancias levantadas por el [Auto Scaling Group](#AutoScaling-AutoScalingGroup).
 ```yml
 ELBV2LB1HCWG:
     Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
