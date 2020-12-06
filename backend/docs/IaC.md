@@ -135,8 +135,10 @@ ELBV2LB1HCWG:
 * VPC: ``vpc-7a4ae111``
 
 ## Posibles mejoras
-Una posible mejora sería incorporar el sistema de monitoreo al stack, porque actualmente es necesario conectar manualmente le monitoreo a cualquier nuevo ambiente.
 
+El proceso de monitoreo está conectado a los ids de las instancias específicas ya existentes, por lo que, al crear este nuevo ambiente no se puede monitorear sin cambiar manualmente los ids a revisar.
+
+Es por esto, que una posible mejora sería incorporar el sistema de monitoreo a CloudFormation, de modo que al crearse este nuevo stack, quede con el monitoreo configurado y funcional sin tener que cambiar nada del código.
 
 
 
