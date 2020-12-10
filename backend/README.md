@@ -5,7 +5,7 @@ ssh -i "entrega1-ec2.pem" ubuntu@ec2-54-86-39-30.compute-1.amazonaws.com
 # Usefull comands ec2:
 ## Check if  RDS is reachable from EC2
 ```
-telnet ec2-database.cjbtc3b7ofay.us-east-1.rds.amazonaws.com 5432 
+telnet ec2-database.cjbtc3b7ofay.us-east-1.rds.amazonaws.com 5432  
 ```
 
 # Instrucciones para ejecutar
